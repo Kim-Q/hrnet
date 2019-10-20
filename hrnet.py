@@ -38,7 +38,7 @@ class BasicBlock(nn.Module):
 
         return out
     
-    
+
 class HRModule(nn.Module):
     def __init__(self, num_branches, blocks, num_blocks, in_channels, out_channels):
         super(HRModule, self).__init__()
@@ -150,7 +150,14 @@ class HRNet(nn.Module):
         y = self.classifier(y)
 
         return y
-        
+
+class HRNet_LSTM(nn.Module):
+    '''
+    IDEA:
+    for each branch of results, we simply use num_branches LSTM cell to process different resolution of feature maps and try to make use on position-sensitive tasks.
+    '''
+    pass
+
 def cls_net(config, **kwargs):
     model = HRNet(config, **kwargs)
     model.init_weights()
