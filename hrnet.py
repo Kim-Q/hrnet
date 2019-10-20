@@ -38,6 +38,7 @@ class BasicBlock(nn.Module):
 
         return out
     
+    
 class HRModule(nn.Module):
     def __init__(self, num_branches, blocks, num_blocks, in_channels, out_channels):
         super(HRModule, self).__init__()
@@ -47,16 +48,35 @@ class HRModule(nn.Module):
         self.num_branches = num_branches
 
         self.branches = self._make_branches(num_branches, blocks, num_blocks, out_channels)
-
         self.relu = nn.ReLU(False)
 
     def _make_branches(self, num_branches, blocks, num_blocks, out_channels):
+        '''
+        pesudo code
+        for i in range(num_branches):
+            x[i] = self._make_one_branches(branch_index=i)
+        return x
+        '''
         pass
 
     def _make_one_branches(self, branch_index, block, num_blocks, num_channels):
+        '''
+        pesudo code
+        for i in range (num_blocks):
+            x = block(x, num_channels)
+        return x
+        '''
         pass
 
     def _make_fuse_layers(self, num_branches, block, num_blocks, num_channels):
+        '''
+        pesudo code
+        for i in range(num_branches)
+            for j in range(num_branches):
+                if i != j:
+                    do downsample or upsample
+                y += x[j]
+        '''
         pass
 
     def forward(self, x):
@@ -90,6 +110,8 @@ class HRNet(nn.Module):
     def _make_head(self, parameter_list):
         '''
         The function from feature maps to classifier.
+        pesudo code:
+
         '''
         pass
 
